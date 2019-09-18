@@ -1,0 +1,59 @@
+<div class="container">
+  <p>
+    Listado de Albums!
+  </p>
+  <div class="row">
+    <div class="col-sm-6" >
+      <form [formGroup]="frmListado">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text"
+                 formControlName="nombre"
+                 class="form-control"
+          />
+        </div>
+      </form>
+
+    </div>
+    <div class="col-sm-6 text-right" style="column-span:all">
+      <div class="form-group box-main-btn">
+        <span style="display: block;height: 30px;"></span>
+        <button (click)="buscar()"  class="btn btn-primary btn-margin">Buscar</button>
+        <button class="btn btn-secondary btn-margin">Limpiar</button>
+        <button (click)="cancelar()" class="btn btn-success btn-margin">Nuevo</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-1" >
+      <br/>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-striped">
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre </th>
+        <th>Descripcion</th>
+        <th colspan="2" class="th">Opciones</th>
+      </tr>
+
+      <tr *ngFor="let album of albums">
+        <td>{{album.codigo }}</td>
+        <td>{{album.nombre }}</td>
+        <td>{{album.descripcion }}</td>
+        <td class="td" style="width:20px">
+          <a [routerLink]="['/album-registro/',album.codigo]" title="Modificar" >
+            <i class='fas fa-pencil-alt'></i>
+          </a>
+        </td>
+        <td class="td">
+          <p (click)="eliminar(album.codigo)" title="Eliminar">
+            <i class="fas fa-trash-alt"></i>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
